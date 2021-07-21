@@ -62,7 +62,8 @@ def main():
     data = read_tecplot(args.tecplot_file)
 
     for field_id in range(data['nfields']):
-        output_file = os.path.join(args.dir, "neb_{:04d}.tec".format(field_id))
+        #output_file = os.path.join(args.dir, "neb_{:04d}.tec".format(field_id))
+        output_file = os.path.join(args.dir, args.tecplot_file[0:-4] + "_{:04d}.tec".format(field_id) )
         header_data = HeaderData()
         header_data.title = "neb_{:04d}.tec".format(field_id)
         header_data.variables = ['X', 'Y', 'Z', 'Mx', 'My', 'Mz', 'SD']
