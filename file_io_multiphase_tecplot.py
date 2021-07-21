@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 regex_title = re.compile(r"TITLE\s*=\s*\"(.*)\"")
 regex_variables = re.compile(r"VARIABLES\s*=\s*(\"[a-zA-Z]+\"(\s*,\s*\"[a-zA-Z]+\")*)")
-regex_zone = re.compile(r"ZONE T\s*=\s*\"([a-zA-Z0-9\.\s_\-\+]+)\"")
+regex_zone = re.compile(r"ZONE T\s*=\s*\"([a-zA-Z0-9\.\s_\-\+]*)\"")
 regex_nvert = re.compile(r"N\s*=\s*([0-9]+)")
 regex_nelem = re.compile(r"E\s*=\s*([0-9]+)")
 regex_f = re.compile(r"F\s*=\s*(POINT|BLOCK|FEPOINT|FEBLOCK)")
