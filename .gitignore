@@ -1,0 +1,9 @@
+###############
+# Directories #
+###############
+
+# Python compiled files
+__pycache__
+
+# Pycharm IDE directory
+.idea
