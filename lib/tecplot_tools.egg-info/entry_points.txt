@@ -1,0 +1,2 @@
+[console_scripts]
+extract-multizone-tec = tecplot_utilities.main:entry_point

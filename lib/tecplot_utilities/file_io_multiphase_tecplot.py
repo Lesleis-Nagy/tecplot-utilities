@@ -212,10 +212,21 @@ def read_tecplot(tecplot_file):
 
 
 def chunker(seq, size):
+    r"""
+    Separate a sequence of values into a multiple sequences of a specified size.
+    :param seq: the sequence to chunk.
+    :param size: the size of each chunk subsequence.
+    :return: the chunked sequence.
+    """
     return (seq[pos:pos + size] for pos in range(0, len(seq), size))
 
 
 def frmt_float(f):
+    r"""
+    Negative float extra space.
+    :param f: the float.
+    :return: a string with the float offset by an additional space if it is positive (otherwise no shift).
+    """
     if f < 0:
         return "{:0.7E}".format(f)
     else:
@@ -223,6 +234,13 @@ def frmt_float(f):
 
 
 def write_tecplot(tecplot_file, header_data, data, field_idx=None):
+    r"""
+    Write values to a tecplot file.
+    :param tecplot_file: the file to write data to.
+    :param header_data: tecplot output file header data.
+    :param data: tecplot mesh and field data.
+    :field_idx: the index of a specific field (if undefined each field index is output).
+    """
     write_all_fields = False
     if field_idx is None:
         write_all_fields = True
@@ -265,16 +283,3 @@ def write_tecplot(tecplot_file, header_data, data, field_idx=None):
                     fout.write(" ".join([frmt_float(v[1]) for v in fychunk]) + "\n")
                 for fzchunk in chunker(data['fields'][field_idx], 10):
                     fout.write(" ".join([frmt_float(v[2]) for v in fzchunk]) + "\n")
-
-#
-# Simple test routine for this library
-#
-if __name__ == '__main__':
-    data = read_tecplot(
-        r"C:\Users\lesle\VirtualBoxShared\fs_lnagy2\neb\03\55\18\e0\c1\d8\43\97\ac\ed\a7\11\38\bf\99\50\neb.tec"
-    )
-    header_data = HeaderData()
-    header_data.title = "output_test_neb.tec"
-    header_data.variables = ['X', 'Y', 'Z', 'Mx', 'My', 'Mz', 'SD']
-    write_tecplot(r"C:\Users\lesle\VirtualBoxShared\output_test_neb.tec", header_data, data, field_idx=99)
-
